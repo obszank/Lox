@@ -1,6 +1,15 @@
 package com.craftinginterpreters.lox;
 
 public class Interpreter implements Expr.Visitor<Object> {
+    void intepret(Expr expression) {
+        try {
+            Object value = evaluate(expression);
+            System.out.println(stringify(value));
+        } catch (RuntimeError error) {
+            Lox.runtimeError(error);
+        }
+    }
+
     private Object evaluate(Expr expr) {
         return expr.accept(this);
     }
@@ -102,5 +111,18 @@ public class Interpreter implements Expr.Visitor<Object> {
             return false;
 
         return a.equals(b);
+    }
+
+    private String stringify(Object object) {
+        if (object == null) return "nil";
+
+        if (object instanceof Double) {
+            String text = object.toString()
+            if (text.endsWith(".0")) {
+                text = text.substring(0, text.length() - 2);
+            }
+            return text;
+        }
+        return object.toString();
     }
 }
