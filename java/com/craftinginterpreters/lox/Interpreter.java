@@ -1,7 +1,7 @@
 package com.craftinginterpreters.lox;
 
 public class Interpreter implements Expr.Visitor<Object> {
-    void intepret(Expr expression) {
+    void interpret(Expr expression) {
         try {
             Object value = evaluate(expression);
             System.out.println(stringify(value));
@@ -114,10 +114,11 @@ public class Interpreter implements Expr.Visitor<Object> {
     }
 
     private String stringify(Object object) {
-        if (object == null) return "nil";
+        if (object == null)
+            return "nil";
 
         if (object instanceof Double) {
-            String text = object.toString()
+            String text = object.toString();
             if (text.endsWith(".0")) {
                 text = text.substring(0, text.length() - 2);
             }
