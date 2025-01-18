@@ -44,7 +44,7 @@ class Parser {
     private Stmt expressionStatement() {
         Expr expr = expression();
         consume(SEMICOLON, "Expect ';' after expression.");
-        return new Stmt.Expression(expr);
+        return new Stmt.Expression(expr); // Fixed bug but git doesnt detect it as bug
     }
 
     private Expr equality() {
