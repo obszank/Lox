@@ -1,0 +1,1 @@
+javac .\java\com\craftinginterpreters\tool\GenerateAst.java
