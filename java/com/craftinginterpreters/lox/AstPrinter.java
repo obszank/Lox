@@ -6,13 +6,18 @@ class AstPrinter implements Expr.Visitor<String> {
     }
 
     @Override
-    public String visitCallExpr(Expr.Call expr) { // Attempt to make visit call expr
-
+    public String visitAssignExpr(Expr.Assign expr) {
+        return parenthesize(expr.name.lexeme, expr.value);
     }
 
     @Override
     public String visitBinaryExpr(Expr.Binary expr) {
         return parenthesize(expr.operator.lexeme, expr.left, expr.right);
+    }
+
+    @Override
+    public String visitCallExpr(Expr.Call expr) {
+        return "Not Implemented!";
     }
 
     @Override
@@ -25,6 +30,11 @@ class AstPrinter implements Expr.Visitor<String> {
         if (expr.value == null)
             return "nil";
         return expr.value.toString();
+    }
+
+    @Override
+    public String visitLogicalExpr(Expr.Logical expr) {
+        return "Not Implemented!";
     }
 
     @Override
@@ -60,5 +70,11 @@ class AstPrinter implements Expr.Visitor<String> {
                         new Expr.Literal(45.67)));
 
         System.out.println(new AstPrinter().print(expression));
+
+        Expr otherExpression = new Expr.Assign(
+                new Token(TokenType.EQUAL, "=", "myvariable", 1),
+                new Expr.Literal(42));
+
+        System.out.println(new AstPrinter().print(otherExpression));
     }
 }
