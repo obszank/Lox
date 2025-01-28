@@ -1,0 +1,12 @@
+fun calc(n) {
+        print n;
+}
+class Math {
+    init(n) {
+        this.n = n;
+        calc(this.n);
+    }
+    
+}
+
+var math = Math(2);
