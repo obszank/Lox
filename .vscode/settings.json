@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "memory.h": "c",
+        "corecrt_memory.h": "c",
+        "debug.h": "c",
+        "chunk.h": "c",
+        "common.h": "c"
+    }
+}
